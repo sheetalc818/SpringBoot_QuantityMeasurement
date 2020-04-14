@@ -1,8 +1,8 @@
 package com.bridgelabz.qm.qm;
 
 import com.bridgelabz.qm.qm.controller.QmController;
-import com.bridgelabz.qm.qm.enumeration.Unit;
-import com.bridgelabz.qm.qm.enumeration.UnitType;
+import com.bridgelabz.qm.qm.enumeration.TypeOfUnits;
+import com.bridgelabz.qm.qm.enumeration.ConversionUnitType;
 import com.bridgelabz.qm.qm.service.IQmService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -46,10 +46,10 @@ public class QmMockito {
 
     @Test
     void givenUnit_ShouldReturnUnitSubType() throws Exception {
-        List<UnitType> unitTypeList = Arrays.stream(UnitType.values()).filter(unitType -> unitType.unit.equals(Unit.VOLUME)).collect(Collectors.toList());
-        given(qmService.getUnitType(Unit.VOLUME)).willReturn(unitTypeList);
+        List<ConversionUnitType> unitTypeList = Arrays.stream(ConversionUnitType.values()).filter(unitType -> unitType.unit.equals(TypeOfUnits.VOLUME)).collect(Collectors.toList());
+        given(qmService.getUnitType(TypeOfUnits.VOLUME)).willReturn(unitTypeList);
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/quantityMeasurement/unit/subtype?unit={unit}", Unit.VOLUME)
+                .get("/quantityMeasurement/unit/subtype?unit={unit}", TypeOfUnits.VOLUME)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
