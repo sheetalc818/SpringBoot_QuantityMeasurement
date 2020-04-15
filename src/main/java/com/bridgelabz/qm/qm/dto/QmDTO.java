@@ -3,30 +3,28 @@ package com.bridgelabz.qm.qm.dto;
 import com.bridgelabz.qm.qm.enumeration.ConversionUnitType;
 
 public class QmDTO {
-    ConversionUnitType unitTypeOne;
-    ConversionUnitType unitTypeTwo;
+    ConversionUnitType initialUnit;
+    ConversionUnitType outputUnit;
     double actualValue;
     double convertedValue;
 
-    public QmDTO(ConversionUnitType feet, ConversionUnitType inches, double i) {
-        this.unitTypeOne = feet;
-        this.unitTypeTwo = inches;
-        this.actualValue = i;
+    public void setConvertedValue(double convertedValue) {
+        this.convertedValue = convertedValue;
     }
 
-    public ConversionUnitType getUnitTypeOne() {
-        return unitTypeOne;
+    public ConversionUnitType getInitialUnit() {
+        return initialUnit;
     }
 
-    public ConversionUnitType getUnitTypeTwo() {
-        return unitTypeTwo;
+    public ConversionUnitType getOutputUnit() {
+        return outputUnit;
     }
 
     public double getActualValue() {
         return actualValue;
     }
 
-    public void setConvertedValue(double convertedValue) {
-        this.convertedValue = convertedValue;
+    public double getConvertedValue() {
+        return convertedValue;
     }
 }

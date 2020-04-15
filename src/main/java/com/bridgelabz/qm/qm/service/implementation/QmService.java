@@ -20,8 +20,8 @@ public class QmService implements IQmService {
     }
 
     @Override
-    public QmDTO getConvertedUnitValue(QmDTO quantityMeasurementDTO) {
-        double convertedValue = (quantityMeasurementDTO.getUnitTypeOne().baseUnit * quantityMeasurementDTO.getActualValue())/quantityMeasurementDTO.getUnitTypeTwo().baseUnit;
+    public QmDTO getConversionUnitValue(QmDTO quantityMeasurementDTO) {
+        double convertedValue = (quantityMeasurementDTO.getInitialUnit().baseUnit * quantityMeasurementDTO.getActualValue())/quantityMeasurementDTO.getOutputUnit().baseUnit;
         quantityMeasurementDTO.setConvertedValue(convertedValue);
         return quantityMeasurementDTO;
     }

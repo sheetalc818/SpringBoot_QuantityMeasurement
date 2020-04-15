@@ -9,5 +9,5 @@ import java.util.List;
 public interface IQmService {
     List<ConversionUnitType> getUnitType(TypeOfUnits unit);
 
-    QmDTO getConvertedUnitValue(QmDTO quantityMeasurementDTO);
+    QmDTO getConversionUnitValue(QmDTO quantityMeasurementDTO);
 }
