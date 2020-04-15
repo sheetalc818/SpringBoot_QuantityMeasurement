@@ -30,6 +30,6 @@ public class QmController {
 
     @PostMapping("/unit/conversion")
     public QmDTO getDTO(@RequestBody QmDTO quantityMeasurementDTO) {
-        return qmService.getDTO(quantityMeasurementDTO);
+        return qmService.getConvertedUnitValue(quantityMeasurementDTO);
     }
 }

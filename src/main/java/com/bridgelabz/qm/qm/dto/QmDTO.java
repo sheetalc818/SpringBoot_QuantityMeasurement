@@ -8,6 +8,12 @@ public class QmDTO {
     double actualValue;
     double convertedValue;
 
+    public QmDTO(ConversionUnitType feet, ConversionUnitType inches, double i) {
+        this.unitTypeOne = feet;
+        this.unitTypeTwo = inches;
+        this.actualValue = i;
+    }
+
     public ConversionUnitType getUnitTypeOne() {
         return unitTypeOne;
     }
