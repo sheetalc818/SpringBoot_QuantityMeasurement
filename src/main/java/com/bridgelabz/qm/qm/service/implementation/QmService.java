@@ -14,15 +14,21 @@ import java.util.stream.Collectors;
 @Service
 public class QmService implements IQmService {
 
+
     @Override
-    public List<ConversionUnitType> getUnitType(TypeOfUnits unit) {
+    public List<TypeOfUnits> getAllUnits() {
+        return Arrays.stream(TypeOfUnits.values()).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ConversionUnitType> getSubUnitType(TypeOfUnits unit) {
         return Arrays.stream(ConversionUnitType.values()).filter(unitType -> unitType.unit.equals(unit)).collect(Collectors.toList());
     }
 
     @Override
-    public QmDTO getConversionUnitValue(QmDTO quantityMeasurementDTO) {
+    public double getConversionUnitValue(QmDTO quantityMeasurementDTO) {
         double convertedValue = (quantityMeasurementDTO.getInitialUnit().baseUnit * quantityMeasurementDTO.getActualValue())/quantityMeasurementDTO.getOutputUnit().baseUnit;
         quantityMeasurementDTO.setConvertedValue(convertedValue);
-        return quantityMeasurementDTO;
+        return convertedValue;
     }
 }
