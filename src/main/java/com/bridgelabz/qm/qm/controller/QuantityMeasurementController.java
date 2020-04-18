@@ -1,10 +1,10 @@
 package com.bridgelabz.qm.qm.controller;
 
-import com.bridgelabz.qm.qm.dto.QmDTO;
+import com.bridgelabz.qm.qm.dto.QuantityMeasurementDTO;
 import com.bridgelabz.qm.qm.enumeration.ConversionUnitType;
 import com.bridgelabz.qm.qm.enumeration.TypeOfUnits;
-import com.bridgelabz.qm.qm.responsedto.ResponseDto;
-import com.bridgelabz.qm.qm.service.IQmService;
+import com.bridgelabz.qm.qm.responsedto.ResponseDTO;
+import com.bridgelabz.qm.qm.service.IQuantityMeasurementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/quantityMeasurement")
-public class QmController {
+public class QuantityMeasurementController {
 
     @Value("${app.allUnit}")
     private String allUnitMessage;
@@ -30,26 +30,26 @@ public class QmController {
     private int statusCode;
 
     @Autowired
-    IQmService quantityMeasurementService;
+    IQuantityMeasurementService quantityMeasurementService;
 
     @GetMapping("/unit/type")
-    public ResponseEntity<ResponseDto> getAllQuantityType(){
+    public ResponseEntity<ResponseDTO> getAllQuantityType(){
         List<TypeOfUnits> mainUnits = quantityMeasurementService.getAllUnits();
-        ResponseDto responseDto = new ResponseDto(statusCode, allUnitMessage,mainUnits);
+        ResponseDTO responseDto = new ResponseDTO(statusCode, allUnitMessage,mainUnits);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @GetMapping("/unit/subtype")
-    public ResponseEntity<ResponseDto> getUnitType(@RequestParam(value = "unit") TypeOfUnits unit) {
+    public ResponseEntity<ResponseDTO> getUnitType(@RequestParam(value = "unit") TypeOfUnits unit) {
         List<ConversionUnitType> subUnits = quantityMeasurementService.getSubUnitType(unit);
-                ResponseDto responseDto = new ResponseDto(statusCode,subUnitMessage,subUnits);
+        ResponseDTO responseDto = new ResponseDTO(statusCode,subUnitMessage,subUnits);
         return new ResponseEntity<>(responseDto,HttpStatus.OK);
     }
 
     @PostMapping("/unit/conversion")
-    public ResponseEntity<ResponseDto> getConvertedUnitValue(@RequestBody QmDTO quantityMeasurementDTO) {
+    public ResponseEntity<ResponseDTO> getConvertedUnitValue(@RequestBody QuantityMeasurementDTO quantityMeasurementDTO) {
         double convertedValue = quantityMeasurementService.getConversionUnitValue(quantityMeasurementDTO);
-        ResponseDto responseDto = new ResponseDto(statusCode,convertUnitMessage,convertedValue);
+        ResponseDTO responseDto = new ResponseDTO(statusCode,convertUnitMessage,convertedValue);
         return new ResponseEntity<>(responseDto,HttpStatus.OK);
     }
 }

@@ -2,7 +2,7 @@ package com.bridgelabz.qm.qm.dto;
 
 import com.bridgelabz.qm.qm.enumeration.ConversionUnitType;
 
-public class QmDTO {
+public class QuantityMeasurementDTO {
     ConversionUnitType initialUnit;
     ConversionUnitType outputUnit;
     double actualValue;

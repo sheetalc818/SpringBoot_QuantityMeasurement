@@ -11,8 +11,8 @@ public enum ConversionUnitType {
                 GRAMS(1.00, TypeOfUnits.WEIGHT),
                 KG(1000, TypeOfUnits.WEIGHT),
                 TONNE(1000000, TypeOfUnits.WEIGHT),
-                CELSIUS(0.0, TypeOfUnits.TEMPERATURE),
-                FAHRENHEIT(0.0, TypeOfUnits.TEMPERATURE);
+                CELSIUS(2.12, TypeOfUnits.TEMPERATURE),
+                FAHRENHEIT(1, TypeOfUnits.TEMPERATURE);
 
                 public TypeOfUnits unit;
                 public double baseUnit;

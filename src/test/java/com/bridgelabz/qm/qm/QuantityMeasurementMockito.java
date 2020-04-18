@@ -1,15 +1,13 @@
 package com.bridgelabz.qm.qm;
 
-import com.bridgelabz.qm.qm.controller.QmController;
-import com.bridgelabz.qm.qm.dto.QmDTO;
+import com.bridgelabz.qm.qm.controller.QuantityMeasurementController;
+import com.bridgelabz.qm.qm.dto.QuantityMeasurementDTO;
 import com.bridgelabz.qm.qm.enumeration.TypeOfUnits;
 import com.bridgelabz.qm.qm.enumeration.ConversionUnitType;
-import com.bridgelabz.qm.qm.responsedto.ResponseDto;
-import com.bridgelabz.qm.qm.service.IQmService;
+import com.bridgelabz.qm.qm.responsedto.ResponseDTO;
+import com.bridgelabz.qm.qm.service.IQuantityMeasurementService;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.google.gson.Gson;
-import org.apache.coyote.Response;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -37,14 +35,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(QmController.class)
-public class QmMockito {
+@WebMvcTest(QuantityMeasurementController.class)
+public class QuantityMeasurementMockito {
 
     @Autowired
     public MockMvc mockMvc;
 
     @MockBean
-    private IQmService qmService;
+    private IQuantityMeasurementService qmService;
 
     Gson gson = new Gson();
 
@@ -61,7 +59,7 @@ public class QmMockito {
                 .andReturn();
 
         String response = mvcResult.getResponse().getContentAsString();
-        ResponseDto responseDto = gson.fromJson(response,ResponseDto.class);
+        ResponseDTO responseDto = gson.fromJson(response, ResponseDTO.class);
 
         List<TypeOfUnits> unitsList = (List<TypeOfUnits>) responseDto.data;
 
@@ -83,7 +81,7 @@ public class QmMockito {
 
     @Test
     public void givenUnits_AfterConversion_ShouldReturnValidConversionValueInRespectedUnit() throws Exception {
-        QmDTO convertDto = new QmDTO();
+        QuantityMeasurementDTO convertDto = new QuantityMeasurementDTO();
         convertDto.setInitialUnit(ConversionUnitType.FEET);
         convertDto.setOutputUnit(ConversionUnitType.INCHES);
         convertDto.setActualValue(1);
@@ -101,7 +99,7 @@ public class QmMockito {
                 .andReturn();
 
         String response = mvcResult.getResponse().getContentAsString();
-        ResponseDto responseDto = gson.fromJson(response,ResponseDto.class);
+        ResponseDTO responseDto = gson.fromJson(response, ResponseDTO.class);
         double actualConvertedValue = (double) responseDto.data;
 
         Assert.assertEquals(expectedConvertedValue,actualConvertedValue,0.0);
